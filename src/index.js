@@ -23,7 +23,10 @@ module.exports = {
   async bootstrap({ strapi }) {
     // @ts-ignore
     const io = require('socket.io')(strapi.server.httpServer, {
-      cors: "*"
+      cors: "*",
+      methods: ["GET", "POST"],
+      credentials: true,
+      transports: ['websocket']
     });
 
     io.on('connection', (socket) => {
